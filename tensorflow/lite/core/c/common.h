@@ -100,7 +100,9 @@ typedef struct TfLiteExternalContext {
   TfLiteStatus (*Refresh)(struct TfLiteContext* context);
 } TfLiteExternalContext;
 
+// LINT.IfChange(optional_tensor)
 #define kTfLiteOptionalTensor (-1)
+// LINT.ThenChange(//tensorflow/compiler/mlir/lite/flatbuffer_export.cc:optional_tensor)
 
 /// Fixed size list of integers. Used for dimensions and inputs/outputs tensor
 /// indices
@@ -471,6 +473,8 @@ typedef enum TfLiteCustomAllocationFlags {
   /// Use with caution.
   kTfLiteCustomAllocationFlagsSkipAlignCheck = 1,
 } TfLiteCustomAllocationFlags;
+
+enum { kTfLiteNoBufferIdentifier = SIZE_MAX };
 
 /// A tensor in the interpreter system which is a wrapper around a buffer of
 /// data including a dimensionality (or NULL if not currently defined).
